@@ -1,0 +1,154 @@
+@import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Monda:wght@400;700&display=swap");
+
+@theme {
+  --color-sage: #7d9b76;
+  --color-sage-dark: #5e7a58;
+  --color-beige: #f5efe6;
+  --color-beige-dark: #e8ddd0;
+  --color-rose: #c9896a;
+  --color-cream: #fdfaf5;
+  --color-charcoal: #2d2d2d;
+
+  --font-heading: "Monda", sans-serif;
+  --font-body: "Monda", sans-serif;
+
+  --radius: 0px;
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+}
+
+:root {
+  --nav-h: 104px;
+}
+@media (max-width: 1023px) {
+  :root {
+    --nav-h: 58px;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border-radius: 0 !important;
+}
+
+html {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #fdfaf5;
+  color: #2d2d2d;
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.6;
+  font-weight: 500; /* 🔥 thora bold feel */
+  letter-spacing: 0.2px; /* 🔥 premium readability */
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  overflow-wrap: break-word;
+}
+
+p {
+  line-height: 1.7;
+}
+
+img,
+svg,
+video {
+  max-width: 100%;
+  display: block;
+}
+
+input,
+textarea,
+select,
+button {
+  font-family: var(--font-body);
+  -webkit-appearance: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+::selection {
+  background: #7d9b76;
+  color: #fdfaf5;
+}
+
+::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f5efe6;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #7d9b76;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

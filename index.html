@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Wellness Clinic — Premium holistic healthcare in Islamabad. Book appointments with certified specialists in General Wellness, Mental Health, Nutrition, Physical Therapy, Skin & Aesthetics, and Cardiology." />
+    <meta name="keywords" content="wellness clinic, doctor appointment, holistic health, islamabad clinic, mental health, nutrition, physical therapy" />
+    <meta name="author" content="Wellness Clinic" />
+    <meta name="theme-color" content="#7D9B76" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Wellness Clinic — Heal From Within" />
+    <meta property="og:description" content="A sanctuary of holistic healing where modern medicine meets the wisdom of nature." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://wellnessclinic.com" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Wellness Clinic" />
+    <meta name="twitter:description" content="Premium holistic healthcare in Islamabad." />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- Fonts preload -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>Wellness Clinic — Heal From Within. Live Fully.</title>
+
+    <style>
+      #root-loader {
+        position: fixed;
+        inset: 0;
+        background: #FDFAF5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 16px;
+        z-index: 9999;
+        transition: opacity 0.4s ease;
+      }
+      #root-loader.hide {
+        opacity: 0;
+        pointer-events: none;
+      }
+      .loader-logo {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 28px;
+        font-weight: 600;
+        color: #2D2D2D;
+        letter-spacing: -0.01em;
+      }
+      .loader-sub {
+        font-family: 'DM Sans', sans-serif;
+        font-size: 9px;
+        letter-spacing: 0.28em;
+        color: #7D9B76;
+        text-transform: uppercase;
+        margin-top: -12px;
+      }
+      .loader-bar {
+        width: 60px;
+        height: 1px;
+        background: #E8DDD0;
+        position: relative;
+        overflow: hidden;
+        margin-top: 8px;
+      }
+      .loader-bar::after {
+        content: '';
+        position: absolute;
+        left: -100%;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: #7D9B76;
+        animation: load 1s ease-in-out infinite;
+      }
+      @keyframes load {
+        0% { left: -100%; }
+        50% { left: 0%; }
+        100% { left: 100%; }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root-loader">
+      <div class="loader-logo">Wellness</div>
+      <div class="loader-sub">Clinic</div>
+      <div class="loader-bar"></div>
+    </div>
+
+    <div id="root"></div>
+
+    <script type="module" src="/src/main.jsx"></script>
+    <script>
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          const loader = document.getElementById('root-loader')
+          if (loader) {
+            loader.classList.add('hide')
+            setTimeout(() => loader.remove(), 400)
+          }
+        }, 600)
+      })
+    </script>
+  </body>
+</html>
