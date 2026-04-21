@@ -279,11 +279,11 @@ export default function Hero() {
           <div
             ref={btnsRef}
             style={{
-              display: "flex",
-              alignItems: "center",
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
               gap: "10px",
-              flexWrap: "wrap",
-              justifyContent: isMobile ? "center" : "flex-start",
+              width: isMobile ? "100%" : "auto",
+              maxWidth: isMobile ? "360px" : "none",
               animation: "slideUp 0.6s ease-out 0.42s both",
             }}
           >
@@ -295,18 +295,19 @@ export default function Hero() {
                 key={btn.label}
                 to={btn.to}
                 style={{
-                  padding: isMobile ? "12px 22px" : "13px 30px",
+                  padding: isMobile ? "12px 8px" : "13px 30px",
                   backgroundColor: btn.fill ? "#7D9B76" : "transparent",
                   color: btn.fill ? "#FDFAF5" : "#2D2D2D",
                   fontFamily: "var(--font-body)",
-                  fontSize: "11px",
+                  fontSize: isMobile ? "10px" : "11px",
                   fontWeight: "600",
-                  letterSpacing: "0.14em",
+                  letterSpacing: "0.1em",
                   textTransform: "uppercase",
                   textDecoration: "none",
                   border: btn.fill ? "1px solid #7D9B76" : "1px solid #2D2D2D",
                   transition: "all 0.3s",
-                  display: "inline-block",
+                  display: "block",
+                  textAlign: "center",
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.backgroundColor = btn.fill
