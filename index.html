@@ -3,21 +3,33 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Wellness Clinic — Premium holistic healthcare in Islamabad. Book appointments with certified specialists in General Wellness, Mental Health, Nutrition, Physical Therapy, Skin & Aesthetics, and Cardiology." />
-    <meta name="keywords" content="wellness clinic, doctor appointment, holistic health, islamabad clinic, mental health, nutrition, physical therapy" />
+    <meta
+      name="description"
+      content="Wellness Clinic — Premium holistic healthcare in Islamabad. Book appointments with certified specialists in General Wellness, Mental Health, Nutrition, Physical Therapy, Skin & Aesthetics, and Cardiology."
+    />
+    <meta
+      name="keywords"
+      content="wellness clinic, doctor appointment, holistic health, islamabad clinic, mental health, nutrition, physical therapy"
+    />
     <meta name="author" content="Wellness Clinic" />
     <meta name="theme-color" content="#7D9B76" />
 
     <!-- Open Graph -->
     <meta property="og:title" content="Wellness Clinic — Heal From Within" />
-    <meta property="og:description" content="A sanctuary of holistic healing where modern medicine meets the wisdom of nature." />
+    <meta
+      property="og:description"
+      content="A sanctuary of holistic healing where modern medicine meets the wisdom of nature."
+    />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://wellnessclinic.com" />
+    <meta property="og:url" content="https://clinic-frontend-pi.vercel.app" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Wellness Clinic" />
-    <meta name="twitter:description" content="Premium holistic healthcare in Islamabad." />
+    <meta
+      name="twitter:description"
+      content="Premium holistic healthcare in Islamabad."
+    />
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -37,7 +49,7 @@
       #root-loader {
         position: fixed;
         inset: 0;
-        background: #FDFAF5;
+        background: #fdfaf5;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -51,42 +63,48 @@
         pointer-events: none;
       }
       .loader-logo {
-        font-family: 'Cormorant Garamond', serif;
+        font-family: "Cormorant Garamond", serif;
         font-size: 28px;
         font-weight: 600;
-        color: #2D2D2D;
+        color: #2d2d2d;
         letter-spacing: -0.01em;
       }
       .loader-sub {
-        font-family: 'DM Sans', sans-serif;
+        font-family: "DM Sans", sans-serif;
         font-size: 9px;
         letter-spacing: 0.28em;
-        color: #7D9B76;
+        color: #7d9b76;
         text-transform: uppercase;
         margin-top: -12px;
       }
       .loader-bar {
         width: 60px;
         height: 1px;
-        background: #E8DDD0;
+        background: #e8ddd0;
         position: relative;
         overflow: hidden;
         margin-top: 8px;
       }
       .loader-bar::after {
-        content: '';
+        content: "";
         position: absolute;
         left: -100%;
         top: 0;
         width: 100%;
         height: 100%;
-        background: #7D9B76;
+        background: #7d9b76;
         animation: load 1s ease-in-out infinite;
       }
       @keyframes load {
-        0% { left: -100%; }
-        50% { left: 0%; }
-        100% { left: 100%; }
+        0% {
+          left: -100%;
+        }
+        50% {
+          left: 0%;
+        }
+        100% {
+          left: 100%;
+        }
       }
     </style>
   </head>
@@ -101,15 +119,15 @@
 
     <script type="module" src="/src/main.jsx"></script>
     <script>
-      window.addEventListener('load', () => {
+      window.addEventListener("load", () => {
         setTimeout(() => {
-          const loader = document.getElementById('root-loader')
+          const loader = document.getElementById("root-loader");
           if (loader) {
-            loader.classList.add('hide')
-            setTimeout(() => loader.remove(), 400)
+            loader.classList.add("hide");
+            setTimeout(() => loader.remove(), 400);
           }
-        }, 600)
-      })
+        }, 600);
+      });
     </script>
   </body>
 </html>
