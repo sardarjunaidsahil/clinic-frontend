@@ -6,9 +6,6 @@ import { useAuth } from "../../context/AuthContext";
 import useResponsive from "../../hooks/useResponsive";
 import LogoutModal from "./LogoutModal";
 
-const BEBAS = "'Bebas Neue', sans-serif";
-const DMSANS = "'DM Sans', sans-serif";
-
 const NAV_LINKS = [
   { label: "Home", path: "/" },
   {
@@ -99,15 +96,14 @@ export default function Navbar() {
     window.addEventListener("resize", updateVar);
     return () => window.removeEventListener("resize", updateVar);
   }, []);
-
   const handleLogout = () => setShowLogout(true);
+
   const confirmLogout = () => {
     logout();
     setShowLogout(false);
     setMenuOpen(false);
     navigate("/");
   };
-
   const userInitials =
     user?.name
       ?.split(" ")
@@ -118,7 +114,7 @@ export default function Navbar() {
 
   return (
     <>
-      {/* ── TOP BAR ── */}
+      {/* ── TOP BAR (desktop only, fixed) ── */}
       {!isSmall && (
         <div
           style={{
@@ -137,9 +133,9 @@ export default function Navbar() {
         >
           <span
             style={{
-              fontFamily: BEBAS,
-              fontSize: "16px",
-              letterSpacing: "0.18em",
+              fontFamily: "var(--font-body)",
+              fontSize: "11px",
+              letterSpacing: "0.1em",
               color: "#FDFAF5",
             }}
           >
@@ -153,9 +149,8 @@ export default function Navbar() {
                 alignItems: "center",
                 gap: "6px",
                 color: "#FDFAF5",
-                fontFamily: BEBAS,
-                fontSize: "15px",
-                letterSpacing: "0.12em",
+                fontFamily: "var(--font-body)",
+                fontSize: "11px",
                 textDecoration: "none",
               }}
             >
@@ -163,10 +158,9 @@ export default function Navbar() {
             </a>
             <span
               style={{
-                fontFamily: BEBAS,
-                fontSize: "15px",
-                letterSpacing: "0.12em",
-                color: "rgba(253,250,245,0.75)",
+                fontFamily: "var(--font-body)",
+                fontSize: "11px",
+                color: "rgba(253,250,245,0.7)",
               }}
             >
               Mon–Sat: 9am – 6pm
@@ -175,7 +169,7 @@ export default function Navbar() {
         </div>
       )}
 
-      {/* ── MAIN NAV ── */}
+      {/* ── MAIN NAV (fixed) ── */}
       <nav
         style={{
           position: "fixed",
@@ -235,19 +229,19 @@ export default function Navbar() {
             <div>
               <div
                 style={{
-                  fontFamily: BEBAS,
-                  fontSize: isSmall ? "20px" : "24px",
-                  fontWeight: "400",
+                  fontFamily: "var(--font-heading)",
+                  fontSize: isSmall ? "17px" : "20px",
+                  fontWeight: "600",
                   color: "#2D2D2D",
                   lineHeight: 1,
-                  letterSpacing: "0.08em",
+                  letterSpacing: "0.01em",
                 }}
               >
                 Wellness
               </div>
               <div
                 style={{
-                  fontFamily: DMSANS,
+                  fontFamily: "var(--font-body)",
                   fontSize: "8px",
                   letterSpacing: "0.24em",
                   color: "#7D9B76",
@@ -260,7 +254,7 @@ export default function Navbar() {
             </div>
           </Link>
 
-          {/* DESKTOP NAV LINKS */}
+          {/* DESKTOP LINKS */}
           {!isSmall && (
             <ul
               style={{
@@ -285,11 +279,11 @@ export default function Navbar() {
                       display: "flex",
                       alignItems: "center",
                       gap: "3px",
-                      padding: "8px 14px",
-                      fontFamily: BEBAS,
-                      fontSize: "17px",
-                      fontWeight: "400",
-                      letterSpacing: "0.1em",
+                      padding: "8px 12px",
+                      fontFamily: "var(--font-body)",
+                      fontSize: "13px",
+                      fontWeight: "500",
+                      letterSpacing: "0.03em",
                       color: isActive ? "#7D9B76" : "#2D2D2D",
                       textDecoration: "none",
                       position: "relative",
@@ -317,8 +311,8 @@ export default function Navbar() {
                           style={{
                             position: "absolute",
                             bottom: "2px",
-                            left: "14px",
-                            right: "14px",
+                            left: "12px",
+                            right: "12px",
                             height: "1px",
                             background: "#7D9B76",
                             transformOrigin: "left",
@@ -370,9 +364,8 @@ export default function Navbar() {
                                   alignItems: "center",
                                   gap: "10px",
                                   padding: "9px 18px",
-                                  fontFamily: BEBAS,
-                                  fontSize: "15px",
-                                  letterSpacing: "0.1em",
+                                  fontFamily: "var(--font-body)",
+                                  fontSize: "12px",
                                   color: "#2D2D2D",
                                   textDecoration: "none",
                                   borderLeft: "2px solid transparent",
@@ -494,9 +487,9 @@ export default function Navbar() {
                     >
                       <span
                         style={{
-                          fontFamily: BEBAS,
-                          fontSize: "14px",
-                          letterSpacing: "0.05em",
+                          fontFamily: "var(--font-body)",
+                          fontSize: "11px",
+                          fontWeight: "600",
                           color: "#FDFAF5",
                         }}
                       >
@@ -505,9 +498,9 @@ export default function Navbar() {
                     </div>
                     <span
                       style={{
-                        fontFamily: BEBAS,
-                        fontSize: "16px",
-                        letterSpacing: "0.08em",
+                        fontFamily: "var(--font-body)",
+                        fontSize: "12px",
+                        fontWeight: "500",
                         color: "#2D2D2D",
                       }}
                     >
@@ -517,12 +510,14 @@ export default function Navbar() {
                   <button
                     onClick={handleLogout}
                     style={{
-                      padding: "7px 18px",
+                      padding: "7px 16px",
                       backgroundColor: "transparent",
                       color: "#6B6B6B",
-                      fontFamily: BEBAS,
-                      fontSize: "15px",
-                      letterSpacing: "0.12em",
+                      fontFamily: "var(--font-body)",
+                      fontSize: "11px",
+                      fontWeight: "600",
+                      letterSpacing: "0.08em",
+                      textTransform: "uppercase",
                       border: "1px solid #E8DDD0",
                       cursor: "pointer",
                       transition: "all 0.2s",
@@ -546,12 +541,14 @@ export default function Navbar() {
                   <Link
                     to="/login"
                     style={{
-                      padding: "8px 20px",
+                      padding: "8px 18px",
                       backgroundColor: "transparent",
                       color: "#2D2D2D",
-                      fontFamily: BEBAS,
-                      fontSize: "16px",
-                      letterSpacing: "0.14em",
+                      fontFamily: "var(--font-body)",
+                      fontSize: "11px",
+                      fontWeight: "600",
+                      letterSpacing: "0.1em",
+                      textTransform: "uppercase",
                       textDecoration: "none",
                       border: "1px solid #E8DDD0",
                       transition: "all 0.2s",
@@ -568,12 +565,14 @@ export default function Navbar() {
                   <Link
                     to="/appointment"
                     style={{
-                      padding: "9px 24px",
+                      padding: "9px 22px",
                       backgroundColor: "#7D9B76",
                       color: "#FDFAF5",
-                      fontFamily: BEBAS,
-                      fontSize: "16px",
-                      letterSpacing: "0.14em",
+                      fontFamily: "var(--font-body)",
+                      fontSize: "11px",
+                      fontWeight: "600",
+                      letterSpacing: "0.1em",
+                      textTransform: "uppercase",
                       textDecoration: "none",
                       border: "1px solid #7D9B76",
                       transition: "all 0.3s",
@@ -653,9 +652,9 @@ export default function Navbar() {
             >
               <div
                 style={{
-                  fontFamily: BEBAS,
-                  fontSize: "24px",
-                  letterSpacing: "0.08em",
+                  fontFamily: "var(--font-heading)",
+                  fontSize: "20px",
+                  fontWeight: "600",
                   color: "#2D2D2D",
                 }}
               >
@@ -707,10 +706,11 @@ export default function Navbar() {
                   >
                     <span
                       style={{
-                        fontFamily: BEBAS,
-                        fontSize: "30px",
-                        letterSpacing: "0.06em",
+                        fontFamily: "var(--font-heading)",
+                        fontSize: "26px",
+                        fontWeight: "500",
                         color: "#2D2D2D",
+                        letterSpacing: "-0.01em",
                       }}
                     >
                       {link.label}
@@ -748,9 +748,8 @@ export default function Navbar() {
                             style={{
                               display: "block",
                               padding: "7px 0 7px 16px",
-                              fontFamily: BEBAS,
-                              fontSize: "16px",
-                              letterSpacing: "0.1em",
+                              fontFamily: "var(--font-body)",
+                              fontSize: "13px",
                               color: "#7D9B76",
                               textDecoration: "none",
                               borderLeft: "2px solid #7D9B76",
@@ -792,9 +791,11 @@ export default function Navbar() {
                       padding: "14px",
                       backgroundColor: "#7D9B76",
                       color: "#FDFAF5",
-                      fontFamily: BEBAS,
-                      fontSize: "18px",
-                      letterSpacing: "0.18em",
+                      fontFamily: "var(--font-body)",
+                      fontSize: "12px",
+                      fontWeight: "600",
+                      letterSpacing: "0.14em",
+                      textTransform: "uppercase",
                       textDecoration: "none",
                     }}
                   >
@@ -806,9 +807,11 @@ export default function Navbar() {
                       padding: "12px",
                       backgroundColor: "transparent",
                       border: "1px solid #E8DDD0",
-                      fontFamily: BEBAS,
-                      fontSize: "16px",
-                      letterSpacing: "0.14em",
+                      fontFamily: "var(--font-body)",
+                      fontSize: "12px",
+                      fontWeight: "600",
+                      letterSpacing: "0.1em",
+                      textTransform: "uppercase",
                       color: "#6B6B6B",
                       cursor: "pointer",
                     }}
@@ -833,9 +836,11 @@ export default function Navbar() {
                       padding: "14px",
                       backgroundColor: "#7D9B76",
                       color: "#FDFAF5",
-                      fontFamily: BEBAS,
-                      fontSize: "18px",
-                      letterSpacing: "0.18em",
+                      fontFamily: "var(--font-body)",
+                      fontSize: "12px",
+                      fontWeight: "600",
+                      letterSpacing: "0.14em",
+                      textTransform: "uppercase",
                       textDecoration: "none",
                     }}
                   >
@@ -857,9 +862,11 @@ export default function Navbar() {
                         padding: "11px",
                         backgroundColor: "transparent",
                         border: "1px solid #E8DDD0",
-                        fontFamily: BEBAS,
-                        fontSize: "16px",
-                        letterSpacing: "0.14em",
+                        fontFamily: "var(--font-body)",
+                        fontSize: "11px",
+                        fontWeight: "600",
+                        letterSpacing: "0.1em",
+                        textTransform: "uppercase",
                         color: "#2D2D2D",
                         textDecoration: "none",
                       }}
@@ -875,9 +882,11 @@ export default function Navbar() {
                         padding: "11px",
                         backgroundColor: "#F5EFE6",
                         border: "1px solid #E8DDD0",
-                        fontFamily: BEBAS,
-                        fontSize: "16px",
-                        letterSpacing: "0.14em",
+                        fontFamily: "var(--font-body)",
+                        fontSize: "11px",
+                        fontWeight: "600",
+                        letterSpacing: "0.1em",
+                        textTransform: "uppercase",
                         color: "#7D9B76",
                         textDecoration: "none",
                       }}
@@ -899,9 +908,8 @@ export default function Navbar() {
                 <FiPhone size={12} style={{ color: "#7D9B76" }} />
                 <span
                   style={{
-                    fontFamily: BEBAS,
-                    fontSize: "15px",
-                    letterSpacing: "0.1em",
+                    fontFamily: "var(--font-body)",
+                    fontSize: "12px",
                     color: "#7D9B76",
                   }}
                 >
