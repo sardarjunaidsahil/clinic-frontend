@@ -59,9 +59,9 @@ export default function Navbar() {
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [mobileExpanded, setMobileExpanded] = useState(null);
 
-const { user, logout } = useAuth();
-const navigate = useNavigate();
-const [showLogout, setShowLogout] = useState(false);
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+  const [showLogout, setShowLogout] = useState(false);
 
   const topBarH = isSmall ? 0 : 34;
   const navH = isSmall ? 58 : 70;
@@ -96,14 +96,14 @@ const [showLogout, setShowLogout] = useState(false);
     window.addEventListener("resize", updateVar);
     return () => window.removeEventListener("resize", updateVar);
   }, []);
- const handleLogout = () => setShowLogout(true);
+  const handleLogout = () => setShowLogout(true);
 
- const confirmLogout = () => {
-   logout();
-   setShowLogout(false);
-   setMenuOpen(false);
-   navigate("/");
- };
+  const confirmLogout = () => {
+    logout();
+    setShowLogout(false);
+    setMenuOpen(false);
+    navigate("/");
+  };
   const userInitials =
     user?.name
       ?.split(" ")
@@ -134,8 +134,8 @@ const [showLogout, setShowLogout] = useState(false);
           <span
             style={{
               fontFamily: "var(--font-body)",
-              fontSize: "11px",
-              letterSpacing: "0.1em",
+              fontSize: "13px",
+              letterSpacing: "0.12em",
               color: "#FDFAF5",
             }}
           >
@@ -281,9 +281,9 @@ const [showLogout, setShowLogout] = useState(false);
                       gap: "3px",
                       padding: "8px 12px",
                       fontFamily: "var(--font-body)",
-                      fontSize: "13px",
-                      fontWeight: "500",
-                      letterSpacing: "0.03em",
+                      fontSize: "15px",
+                      fontWeight: "400",
+                      letterSpacing: "0.08em",
                       color: isActive ? "#7D9B76" : "#2D2D2D",
                       textDecoration: "none",
                       position: "relative",
@@ -514,9 +514,9 @@ const [showLogout, setShowLogout] = useState(false);
                       backgroundColor: "transparent",
                       color: "#6B6B6B",
                       fontFamily: "var(--font-body)",
-                      fontSize: "11px",
-                      fontWeight: "600",
-                      letterSpacing: "0.08em",
+                      fontSize: "13px",
+                      fontWeight: "400",
+                      letterSpacing: "0.12em",
                       textTransform: "uppercase",
                       border: "1px solid #E8DDD0",
                       cursor: "pointer",
@@ -545,9 +545,9 @@ const [showLogout, setShowLogout] = useState(false);
                       backgroundColor: "transparent",
                       color: "#2D2D2D",
                       fontFamily: "var(--font-body)",
-                      fontSize: "11px",
-                      fontWeight: "600",
-                      letterSpacing: "0.1em",
+                      fontSize: "13px",
+                      fontWeight: "400",
+                      letterSpacing: "0.12em",
                       textTransform: "uppercase",
                       textDecoration: "none",
                       border: "1px solid #E8DDD0",
@@ -569,9 +569,9 @@ const [showLogout, setShowLogout] = useState(false);
                       backgroundColor: "#7D9B76",
                       color: "#FDFAF5",
                       fontFamily: "var(--font-body)",
-                      fontSize: "11px",
-                      fontWeight: "600",
-                      letterSpacing: "0.1em",
+                      fontSize: "13px",
+                      fontWeight: "400",
+                      letterSpacing: "0.12em",
                       textTransform: "uppercase",
                       textDecoration: "none",
                       border: "1px solid #7D9B76",
@@ -863,9 +863,9 @@ const [showLogout, setShowLogout] = useState(false);
                         backgroundColor: "transparent",
                         border: "1px solid #E8DDD0",
                         fontFamily: "var(--font-body)",
-                        fontSize: "11px",
-                        fontWeight: "600",
-                        letterSpacing: "0.1em",
+                        fontSize: "13px",
+                        fontWeight: "400",
+                        letterSpacing: "0.12em",
                         textTransform: "uppercase",
                         color: "#2D2D2D",
                         textDecoration: "none",
@@ -883,9 +883,9 @@ const [showLogout, setShowLogout] = useState(false);
                         backgroundColor: "#F5EFE6",
                         border: "1px solid #E8DDD0",
                         fontFamily: "var(--font-body)",
-                        fontSize: "11px",
-                        fontWeight: "600",
-                        letterSpacing: "0.1em",
+                        fontSize: "13px",
+                        fontWeight: "400",
+                        letterSpacing: "0.12em",
                         textTransform: "uppercase",
                         color: "#7D9B76",
                         textDecoration: "none",
