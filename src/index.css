@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@import url("https://fonts.googleapis.com/css2?family=Monda:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
 
 @theme {
   --color-sage: #7d9b76;
@@ -10,8 +10,8 @@
   --color-cream: #fdfaf5;
   --color-charcoal: #2d2d2d;
 
-  --font-heading: "Monda", sans-serif;
-  --font-body: "Monda", sans-serif;
+  --font-heading: "Anton", sans-serif;
+  --font-body: "Anton", sans-serif;
 
   --radius: 0px;
   --radius-sm: 0px;
