@@ -1,9 +1,17 @@
 import axios from "axios";
 
+const baseURL =
+  import.meta.env.VITE_API_URL ||
+  (import.meta.env.DEV ? "/api" : "https://clinic-backend-liard.vercel.app/api");
+
+console.log("[api] baseURL", baseURL, {
+  DEV: import.meta.env.DEV,
+  MODE: import.meta.env.MODE,
+  VITE_API_URL: import.meta.env.VITE_API_URL,
+});
+
 const api = axios.create({
-  baseURL:
-    import.meta.env.VITE_API_URL ||
-    "https://clinic-backend-liard.vercel.app/api",
+  baseURL,
   headers: { "Content-Type": "application/json" },
   timeout: 10000,
 });
