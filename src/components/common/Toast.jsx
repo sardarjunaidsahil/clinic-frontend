@@ -1,10 +1,10 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import {
   FiCheckCircle,
   FiXCircle,
   FiInfo,
-  FiAlertCircle,
+  FiAlertTriangle,
   FiX,
 } from "react-icons/fi";
 
@@ -26,36 +26,40 @@ function ToastItem({ toast, onRemove }) {
       clearTimeout(t1);
       clearTimeout(t2);
     };
-  }, []);
+  }, [onRemove, toast.duration, toast.id]);
 
   const TYPES = {
     success: {
       icon: <FiCheckCircle size={18} />,
       accent: "#7D9B76",
-      bg: "#F0F7F0",
-      border: "#7D9B76",
-      color: "#2D5C25",
+      bg: "#FDFAF5",
+      border: "#E8DDD0",
+      titleColor: "#2D2D2D",
+      msgColor: "#6B6B6B",
     },
     error: {
       icon: <FiXCircle size={18} />,
       accent: "#B91C1C",
       bg: "#FEF2F2",
-      border: "#B91C1C",
-      color: "#7F1D1D",
+      border: "#FECACA",
+      titleColor: "#B91C1C",
+      msgColor: "#7F1D1D",
     },
     info: {
       icon: <FiInfo size={18} />,
       accent: "#7D9B76",
       bg: "#F5EFE6",
-      border: "#C9896A",
-      color: "#2D2D2D",
+      border: "#E8DDD0",
+      titleColor: "#2D2D2D",
+      msgColor: "#6B6B6B",
     },
     warning: {
-      icon: <FiAlertCircle size={18} />,
+      icon: <FiAlertTriangle size={18} />,
       accent: "#D97706",
       bg: "#FFFBEB",
-      border: "#D97706",
-      color: "#78350F",
+      border: "#FDE68A",
+      titleColor: "#78350F",
+      msgColor: "#92400E",
     },
   };
 
@@ -75,10 +79,10 @@ function ToastItem({ toast, onRemove }) {
         padding: "14px 16px",
         backgroundColor: t.bg,
         border: `1px solid ${t.border}`,
-        borderLeft: `3px solid ${t.accent}`,
-        boxShadow: "0 8px 32px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06)",
+        borderLeft: `4px solid ${t.accent}`,
+        boxShadow: "0 10px 30px rgba(45,45,45,0.12)",
         minWidth: "280px",
-        maxWidth: "360px",
+        maxWidth: "380px",
         width: "100%",
         transform,
         opacity: visible && !leaving ? 1 : 0,
@@ -89,7 +93,7 @@ function ToastItem({ toast, onRemove }) {
       }}
     >
       {/* Icon */}
-      <span style={{ color: t.accent, flexShrink: 0, marginTop: "1px" }}>
+      <span style={{ color: t.accent, flexShrink: 0, marginTop: "2px" }}>
         {t.icon}
       </span>
 
@@ -98,12 +102,13 @@ function ToastItem({ toast, onRemove }) {
         {toast.title && (
           <div
             style={{
-              fontFamily: "var(--font-body)",
-              fontSize: "13px",
+              fontFamily: "var(--font-heading)",
+              fontSize: "15px",
               fontWeight: "600",
-              color: t.color,
-              marginBottom: toast.message ? "3px" : 0,
-              letterSpacing: "0.01em",
+              color: t.titleColor,
+              marginBottom: toast.message ? "2px" : 0,
+              letterSpacing: "0.02em",
+              textTransform: "uppercase",
             }}
           >
             {toast.title}
@@ -114,8 +119,7 @@ function ToastItem({ toast, onRemove }) {
             style={{
               fontFamily: "var(--font-body)",
               fontSize: "12px",
-              color: t.color,
-              opacity: 0.85,
+              color: t.msgColor,
               lineHeight: 1.5,
             }}
           >
@@ -144,8 +148,9 @@ function ToastItem({ toast, onRemove }) {
         }}
         onMouseEnter={(e) => (e.currentTarget.style.opacity = "1")}
         onMouseLeave={(e) => (e.currentTarget.style.opacity = "0.6")}
+        aria-label="Dismiss toast"
       >
-        <FiX size={14} />
+        <FiX size={15} />
       </button>
 
       {/* Progress bar */}

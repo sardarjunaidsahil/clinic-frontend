@@ -4,6 +4,7 @@ import AdminSidebar from "../../components/admin/AdminSidebar";
 import useResponsive from "../../hooks/useResponsive";
 import { useAuth } from "../../context/AuthContext";
 import { useToastContext } from "../../context/ToastContext";
+import useConfirm from "../../hooks/useConfirm";
 import api from "../../services/api";
 
 const SPECIALTIES = [
@@ -42,6 +43,7 @@ export default function AdminDoctors() {
   const { logout } = useAuth();
   const navigate = useNavigate();
   const toast = useToastContext();
+  const { confirm } = useConfirm();
 
   const [collapsed, setCollapsed] = useState(false);
   const [doctors, setDoctors] = useState([]);
@@ -156,7 +158,14 @@ export default function AdminDoctors() {
   };
 
   const handleDelete = async (doc) => {
-    if (!window.confirm(`Delete ${doc.name}? This cannot be undone.`)) return;
+    const isConfirmed = await confirm({
+      title: "Delete Doctor",
+      message: `Are you sure you want to delete ${doc.name}? This action cannot be undone.`,
+      confirmText: "Delete Doctor",
+      cancelText: "Cancel",
+      variant: "danger",
+    });
+    if (!isConfirmed) return;
     try {
       await api.delete(`/doctors/${doc.id}`);
       toast.success("Deleted", `${doc.name} has been removed.`);

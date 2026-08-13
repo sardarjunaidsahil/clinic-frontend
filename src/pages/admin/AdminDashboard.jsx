@@ -5,9 +5,11 @@ import useResponsive from "../../hooks/useResponsive";
 import { useAuth } from "../../context/AuthContext";
 import api from "../../services/api";
 import { appointmentService } from "../../services/appointmentService";
+import useConfirm from "../../hooks/useConfirm";
 
 export default function AdminDashboard() {
   const { isMobile } = useResponsive();
+  const { alert } = useConfirm();
   const { logout } = useAuth();
   const navigate = useNavigate();
   const [collapsed, setCollapsed] = useState(false);
@@ -38,7 +40,11 @@ export default function AdminDashboard() {
       await appointmentService.updateStatus(id, status);
       setApts((prev) => prev.map((a) => (a.id === id ? { ...a, status } : a)));
     } catch (e) {
-      alert(e?.message || "Failed");
+      await alert({
+        title: "Update Failed",
+        message: e?.message || "Failed to update appointment status.",
+        variant: "danger",
+      });
     }
   };
 

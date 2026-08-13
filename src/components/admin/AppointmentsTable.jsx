@@ -1,6 +1,7 @@
 import { useState } from "react";
 import useResponsive from "../../hooks/useResponsive";
 import { appointmentService } from "../../services/appointmentService";
+import StatusBadge from "../common/StatusBadge";
 
 const STATUS_COLORS = {
   PENDING: { bg: "#FFF8E1", color: "#F57F17", border: "#F57F17" },
@@ -190,22 +191,7 @@ export default function AppointmentsTable({ appointments: propAppointments }) {
                       {date} · {apt.time_slot || apt.time || "—"}
                     </td>
                     <td style={{ padding: "13px 14px" }}>
-                      <span
-                        style={{
-                          padding: "3px 10px",
-                          backgroundColor: sc.bg,
-                          border: `1px solid ${sc.border}`,
-                          fontFamily: "var(--font-body)",
-                          fontSize: "9px",
-                          fontWeight: "600",
-                          letterSpacing: "0.1em",
-                          textTransform: "uppercase",
-                          color: sc.color,
-                          whiteSpace: "nowrap",
-                        }}
-                      >
-                        {apt.status}
-                      </span>
+                      <StatusBadge status={apt.status} />
                     </td>
                     <td style={{ padding: "13px 14px" }}>
                       <div

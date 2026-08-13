@@ -4,6 +4,7 @@ import { useAuth } from "../context/AuthContext";
 import { authService } from "../services/authService";
 import { useToastContext } from "../context/ToastContext";
 import { FiEye, FiEyeOff } from "react-icons/fi";
+import FormError from "../components/common/FormError";
 
 export default function Login() {
   const { login } = useAuth();
@@ -76,7 +77,7 @@ export default function Login() {
               {location.state.message}
             </div>
           )}
-          {err && <div className="login-alert login-alert-error">{err}</div>}
+          {err && <FormError message={err} style={{ marginBottom: '14px' }} />}
 
           <form onSubmit={submit}>
             <div className="login-field">

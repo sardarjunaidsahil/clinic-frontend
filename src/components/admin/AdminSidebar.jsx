@@ -110,9 +110,10 @@ export default function AdminSidebar({ collapsed, onToggle, onLogout }) {
                 gap: "10px",
                 padding: collapsed ? "11px 18px" : "11px 18px",
                 fontFamily: "var(--font-body)",
-                fontSize: "12px",
+                fontSize: "11px",
                 fontWeight: "600",
-                letterSpacing: "0.05em",
+                letterSpacing: "0.08em",
+                textTransform: "uppercase",
                 textDecoration: "none",
                 color: isActive ? "#7D9B76" : "rgba(253,250,245,0.5)",
                 backgroundColor: isActive

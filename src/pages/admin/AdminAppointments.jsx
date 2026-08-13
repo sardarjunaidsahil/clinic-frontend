@@ -5,6 +5,9 @@ import useResponsive from "../../hooks/useResponsive";
 import { useAuth } from "../../context/AuthContext";
 import { useToastContext } from "../../context/ToastContext";
 import api from "../../services/api";
+import StatusBadge from "../../components/common/StatusBadge";
+import { SkeletonTable } from "../../components/common/Skeleton";
+import useConfirm from "../../hooks/useConfirm";
 
 const STATUS_COLORS = {
   PENDING: { bg: "#FFF8E1", color: "#F57F17", border: "#F57F17" },
@@ -206,16 +209,7 @@ export default function AdminAppointments() {
 
           {/* Table */}
           {busy ? (
-            <div
-              style={{
-                padding: "48px",
-                textAlign: "center",
-                fontFamily: "var(--font-body)",
-                color: "#6B6B6B",
-              }}
-            >
-              Loading...
-            </div>
+            <SkeletonTable rows={6} cols={7} />
           ) : (
             <div style={{ overflowX: "auto", border: "1px solid #E8DDD0" }}>
               <table

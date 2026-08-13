@@ -6,6 +6,10 @@ import LogoutModal from "../components/common/LogoutModal";
 import { appointmentService } from "../services/appointmentService";
 import { useToastContext } from "../context/ToastContext";
 import { authService } from "../services/authService";
+import useConfirm from "../hooks/useConfirm";
+import StatusBadge from "../components/common/StatusBadge";
+import EmptyState from "../components/common/EmptyState";
+import { SkeletonCard, SkeletonText } from "../components/common/Skeleton";
 import {
   FiCalendar,
   FiFileText,
@@ -33,6 +37,7 @@ const STATUS_STYLE = {
 export default function Dashboard() {
   const { isMobile } = useResponsive();
   const toast = useToastContext();
+  const { confirm } = useConfirm();
   const { user, updateUser } = useAuth();
   const navigate = useNavigate();
 
@@ -93,8 +98,14 @@ export default function Dashboard() {
   );
 
   const handleCancel = async (id) => {
-    if (!window.confirm("Are you sure you want to Cancel this Appointment?"))
-      return;
+    const isConfirmed = await confirm({
+      title: "Cancel Appointment",
+      message: "Are you sure you want to cancel this appointment? This action cannot be undone.",
+      confirmText: "Yes, Cancel",
+      cancelText: "Keep Appointment",
+      variant: "danger",
+    });
+    if (!isConfirmed) return;
     try {
       await appointmentService.cancel(id);
       setApts((prev) =>
@@ -350,60 +361,22 @@ export default function Dashboard() {
             {busy ? (
               <div
                 style={{
-                  padding: "48px",
-                  textAlign: "center",
-                  fontFamily: "var(--font-body)",
-                  color: "#6B6B6B",
+                  display: "grid",
+                  gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
+                  gap: "16px",
                 }}
               >
-                Loading appointments...
+                <SkeletonCard />
+                <SkeletonCard />
               </div>
             ) : apts.length === 0 ? (
-              <div
-                style={{
-                  padding: "48px 24px",
-                  textAlign: "center",
-                  border: "1px solid #E8DDD0",
-                  backgroundColor: "#F5EFE6",
-                }}
-              >
-                <div
-                  style={{
-                    fontFamily: "var(--font-heading)",
-                    fontSize: "24px",
-                    color: "#2D2D2D",
-                    marginBottom: "8px",
-                  }}
-                >
-                  No appointments yet
-                </div>
-                <p
-                  style={{
-                    fontFamily: "var(--font-body)",
-                    fontSize: "13px",
-                    color: "#6B6B6B",
-                    marginBottom: "16px",
-                  }}
-                >
-                  Book your first appointment today
-                </p>
-                <Link
-                  to="/appointment"
-                  style={{
-                    padding: "10px 22px",
-                    backgroundColor: "#7D9B76",
-                    color: "#FDFAF5",
-                    fontFamily: "var(--font-body)",
-                    fontSize: "11px",
-                    fontWeight: "600",
-                    letterSpacing: "0.1em",
-                    textTransform: "uppercase",
-                    textDecoration: "none",
-                  }}
-                >
-                  Book Now
-                </Link>
-              </div>
+              <EmptyState
+                title="No Appointments Yet"
+                description="Book your first consultation with our expert healthcare professionals."
+                actionLabel="Book Appointment"
+                onAction={() => navigate("/appointment")}
+                icon="calendar"
+              />
             ) : (
               <>
                 {[
@@ -519,21 +492,7 @@ export default function Dashboard() {
                                     flexShrink: 0,
                                   }}
                                 >
-                                  <span
-                                    style={{
-                                      padding: "2px 9px",
-                                      backgroundColor: sc.bg,
-                                      border: `1px solid ${sc.border}`,
-                                      fontFamily: "var(--font-body)",
-                                      fontSize: "9px",
-                                      fontWeight: "600",
-                                      letterSpacing: "0.08em",
-                                      textTransform: "uppercase",
-                                      color: sc.color,
-                                    }}
-                                  >
-                                    {apt.status}
-                                  </span>
+                                  <StatusBadge status={apt.status} />
                                   {["PENDING", "CONFIRMED"].includes(
                                     apt.status,
                                   ) && (

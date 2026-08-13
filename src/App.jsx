@@ -6,6 +6,7 @@ import Loader from "./components/common/Loader";
 import { AuthProvider, useAuth } from "./context/AuthContext";
 import { AppointmentProvider } from "./context/AppointmentContext";
 import { ToastProvider } from "./context/ToastContext";
+import { ConfirmProvider } from "./context/ConfirmContext";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 const ResetPassword = lazy(() => import("./pages/ResetPassword"));
@@ -260,9 +261,11 @@ export default function App() {
       <AuthProvider>
         <AppointmentProvider>
           <ToastProvider>
-            <Suspense fallback={<Loader />}>
-              <AppRoutes />
-            </Suspense>
+            <ConfirmProvider>
+              <Suspense fallback={<Loader />}>
+                <AppRoutes />
+              </Suspense>
+            </ConfirmProvider>
           </ToastProvider>
         </AppointmentProvider>
       </AuthProvider>

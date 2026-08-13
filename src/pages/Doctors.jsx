@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import useResponsive from "../hooks/useResponsive";
+import EmptyState from "../components/common/EmptyState";
+import { SkeletonCard } from "../components/common/Skeleton";
 
 const specialties = [
   "All",
@@ -194,13 +196,22 @@ export default function Doctors({ preFilter = '' }) {
           }}
         >
           {loading ? (
-            <div style={{ gridColumn: '1/-1', padding: '60px', textAlign: 'center', backgroundColor: '#FDFAF5', fontFamily: 'var(--font-body)', fontSize: '13px', color: '#6B6B6B' }}>
-              Loading doctors...
-            </div>
+            <>
+              {Array.from({ length: 4 }).map((_, i) => (
+                <div key={i} style={{ backgroundColor: '#FDFAF5', padding: isMobile ? '28px 24px' : '36px 28px' }}>
+                  <SkeletonCard />
+                </div>
+              ))}
+            </>
           ) : filtered.length === 0 ? (
-            <div style={{ gridColumn: '1/-1', padding: '60px', textAlign: 'center', backgroundColor: '#FDFAF5' }}>
-              <div style={{ fontFamily: 'var(--font-heading)', fontSize: '24px', color: '#E8DDD0', marginBottom: '8px' }}>No doctors found</div>
-              <button onClick={() => setActiveFilter('All')} style={{ padding: '9px 20px', backgroundColor: '#7D9B76', color: '#FDFAF5', fontFamily: 'var(--font-body)', fontSize: '11px', fontWeight: '600', letterSpacing: '0.1em', textTransform: 'uppercase', border: 'none', cursor: 'pointer' }}>Show All</button>
+            <div style={{ gridColumn: '1/-1', backgroundColor: '#FDFAF5', padding: '20px' }}>
+              <EmptyState
+                title="No Doctors Found"
+                description="No doctors match your current filter. Try selecting a different specialty."
+                actionLabel="Show All"
+                onAction={() => setActiveFilter('All')}
+                icon="doctor"
+              />
             </div>
           ) : filtered.map((doc) => (
             <Link
