@@ -2,12 +2,10 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import { authService } from "../services/authService";
-import useResponsive from "../hooks/useResponsive";
 import { useToastContext } from "../context/ToastContext";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 
 export default function Register() {
-  const { isMobile } = useResponsive();
   const navigate = useNavigate();
   const [form, setF] = useState({
     name: "",
@@ -64,212 +62,91 @@ export default function Register() {
     }
   };
 
-  const inp = {
-    width: "100%",
-    padding: "12px 14px",
-    fontFamily: "var(--font-body)",
-    fontSize: "13px",
-    color: "#2D2D2D",
-    backgroundColor: "#FDFAF5",
-    border: "1px solid #E8DDD0",
-    outline: "none",
-  };
-  const lbl = {
-    display: "block",
-    fontFamily: "var(--font-body)",
-    fontSize: "10px",
-    fontWeight: "600",
-    letterSpacing: "0.15em",
-    textTransform: "uppercase",
-    color: "#7D9B76",
-    marginBottom: "6px",
-  };
-
   return (
-    <main
-      style={{
-        backgroundColor: "#FDFAF5",
-        minHeight: "100vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: "40px 24px",
-      }}
-    >
-      <div style={{ width: "100%", maxWidth: "460px" }}>
-        <div style={{ textAlign: "center", marginBottom: "32px" }}>
+    <main className="register-page">
+      <div className="register-wrap">
+        <div className="register-logo">
           <Link to="/">
-            <div
-              style={{
-                fontFamily: "var(--font-heading)",
-                fontSize: "28px",
-                fontWeight: "600",
-                color: "#2D2D2D",
-              }}
-            >
-              Wellness
-            </div>
-            <div
-              style={{
-                fontFamily: "var(--font-body)",
-                fontSize: "9px",
-                letterSpacing: "0.3em",
-                color: "#7D9B76",
-                textTransform: "uppercase",
-              }}
-            >
-              Clinic
-            </div>
+            <div className="register-logo-title">Wellness</div>
+            <div className="register-logo-sub">Clinic</div>
           </Link>
         </div>
 
-        <div
-          style={{
-            backgroundColor: "#F5EFE6",
-            border: "1px solid #E8DDD0",
-            padding: isMobile ? "24px" : "36px 32px",
-          }}
-        >
-          <h1
-            style={{
-              fontFamily: "var(--font-heading)",
-              fontSize: "26px",
-              fontWeight: "400",
-              color: "#2D2D2D",
-              marginBottom: "6px",
-            }}
-          >
-            Create Account
-          </h1>
-          <p
-            style={{
-              fontFamily: "var(--font-body)",
-              fontSize: "13px",
-              color: "#6B6B6B",
-              marginBottom: "22px",
-            }}
-          >
-            Join our Wellness Community
-          </p>
+        <div className="register-card">
+          <h1 className="register-heading">Create Account</h1>
+          <p className="register-subtext">Join our Wellness Community</p>
 
-          {err && (
-            <div
-              style={{
-                padding: "10px 14px",
-                backgroundColor: "#FEF2F2",
-                border: "1px solid #FECACA",
-                fontFamily: "var(--font-body)",
-                fontSize: "12px",
-                color: "#B91C1C",
-                marginBottom: "14px",
-              }}
-            >
-              {err}
-            </div>
-          )}
+          {err && <div className="register-alert-error">{err}</div>}
 
           <form onSubmit={submit}>
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
-                gap: "12px",
-                marginBottom: "12px",
-              }}
-            >
-              <div>
-                <label style={lbl}>Full Name *</label>
+            <div className="register-row-2">
+              <div className="register-field">
+                <label className="register-label">Full Name *</label>
                 <input
                   type="text"
-                  placeholder="Your full name"
+                  placeholder="Enter your full name"
                   value={form.name}
                   onChange={(e) => setF({ ...form, name: e.target.value })}
-                  style={inp}
-                  onFocus={(e) => (e.target.style.borderColor = "#7D9B76")}
-                  onBlur={(e) => (e.target.style.borderColor = "#E8DDD0")}
+                  className="register-input"
                   required
                 />
               </div>
-              <div>
-                <label style={lbl}>Phone</label>
+              <div className="register-field">
+                <label className="register-label">Phone</label>
                 <input
                   type="tel"
-                  placeholder="+92 300 000 0000"
+                  placeholder="+92 3XX XXXXXXX"
                   value={form.phone}
                   onChange={(e) => setF({ ...form, phone: e.target.value })}
-                  style={inp}
-                  onFocus={(e) => (e.target.style.borderColor = "#7D9B76")}
-                  onBlur={(e) => (e.target.style.borderColor = "#E8DDD0")}
+                  className="register-input"
                 />
               </div>
             </div>
 
-            <div style={{ marginBottom: "12px" }}>
-              <label style={lbl}>Email Address *</label>
+            <div className="register-field register-field-full">
+              <label className="register-label">Email Address *</label>
               <input
                 type="email"
-                placeholder="your@email.com"
+                placeholder="you@example.com"
                 value={form.email}
                 onChange={(e) => setF({ ...form, email: e.target.value })}
-                style={inp}
-                onFocus={(e) => (e.target.style.borderColor = "#7D9B76")}
-                onBlur={(e) => (e.target.style.borderColor = "#E8DDD0")}
+                className="register-input"
                 required
               />
             </div>
 
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
-                gap: "12px",
-                marginBottom: "20px",
-              }}
-            >
-              <div>
-                <label style={lbl}>Password *</label>
-                <div style={{ position: "relative" }}>
+            <div className="register-row-2 register-row-last">
+              <div className="register-field">
+                <label className="register-label">Password *</label>
+                <div className="register-pw-wrap">
                   <input
                     type={show ? "text" : "password"}
-                    placeholder="Min 6 chars"
+                    placeholder="Minimum 6 characters"
                     value={form.password}
                     onChange={(e) =>
                       setF({ ...form, password: e.target.value })
                     }
-                    style={{ ...inp, paddingRight: "40px" }}
-                    onFocus={(e) => (e.target.style.borderColor = "#7D9B76")}
-                    onBlur={(e) => (e.target.style.borderColor = "#E8DDD0")}
+                    className="register-input register-input-pw"
                     required
                   />
                   <button
                     type="button"
                     onClick={() => setShow((s) => !s)}
-                    style={{
-                      position: "absolute",
-                      right: "10px",
-                      top: "50%",
-                      transform: "translateY(-50%)",
-                      background: "none",
-                      border: "none",
-                      cursor: "pointer",
-                      color: "#6B6B6B",
-                      display: "flex",
-                    }}
+                    className="register-eye-btn"
+                    aria-label={show ? "Hide password" : "Show password"}
                   >
                     {show ? <FiEyeOff size={14} /> : <FiEye size={14} />}
                   </button>
                 </div>
               </div>
-              <div>
-                <label style={lbl}>Confirm *</label>
+              <div className="register-field">
+                <label className="register-label">Confirm Password *</label>
                 <input
                   type="password"
-                  placeholder="Repeat password"
+                  placeholder="Re-enter your password"
                   value={form.confirm}
                   onChange={(e) => setF({ ...form, confirm: e.target.value })}
-                  style={inp}
-                  onFocus={(e) => (e.target.style.borderColor = "#7D9B76")}
-                  onBlur={(e) => (e.target.style.borderColor = "#E8DDD0")}
+                  className="register-input"
                   required
                 />
               </div>
@@ -278,36 +155,11 @@ export default function Register() {
             <button
               type="submit"
               disabled={busy}
-              style={{
-                width: "100%",
-                padding: "14px",
-                backgroundColor: busy ? "#A8C1A2" : "#7D9B76",
-                color: "#FDFAF5",
-                fontFamily: "var(--font-body)",
-                fontSize: "12px",
-                fontWeight: "600",
-                letterSpacing: "0.15em",
-                textTransform: "uppercase",
-                border: "none",
-                cursor: busy ? "not-allowed" : "pointer",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: "8px",
-              }}
+              className="register-submit-btn"
             >
               {busy ? (
                 <>
-                  <div
-                    style={{
-                      width: "14px",
-                      height: "14px",
-                      border: "2px solid rgba(255,255,255,0.3)",
-                      borderTopColor: "#FDFAF5",
-                      borderRadius: "50%",
-                      animation: "spin 0.7s linear infinite",
-                    }}
-                  />
+                  <div className="register-spinner" />
                   Creating...
                 </>
               ) : (
@@ -317,22 +169,261 @@ export default function Register() {
           </form>
         </div>
 
-        <p
-          style={{
-            textAlign: "center",
-            fontFamily: "var(--font-body)",
-            fontSize: "13px",
-            color: "#6B6B6B",
-            marginTop: "16px",
-          }}
-        >
+        <p className="register-footer-text">
           Already have an account?{" "}
-          <Link to="/login" style={{ color: "#7D9B76", fontWeight: "600" }}>
+          <Link to="/login" className="register-footer-link">
             Sign in
           </Link>
         </p>
       </div>
-      <style>{`@keyframes spin{to{transform:rotate(360deg)}}`}</style>
+
+      <style>{`
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .register-page {
+          background-color: #FDFAF5;
+          min-height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 40px 24px;
+          box-sizing: border-box;
+        }
+
+        .register-wrap {
+          width: 100%;
+          max-width: 460px;
+        }
+
+        .register-logo {
+          text-align: center;
+          margin-bottom: 32px;
+        }
+
+        .register-logo a {
+          text-decoration: none;
+        }
+
+        .register-logo-title {
+          font-family: var(--font-heading);
+          font-size: 28px;
+          font-weight: 600;
+          color: #2D2D2D;
+        }
+
+        .register-logo-sub {
+          font-family: var(--font-body);
+          font-size: 9px;
+          letter-spacing: 0.3em;
+          color: #7D9B76;
+          text-transform: uppercase;
+        }
+
+        .register-card {
+          background-color: #F5EFE6;
+          border: 1px solid #E8DDD0;
+          border-radius: 6px;
+          padding: 36px 32px;
+          box-sizing: border-box;
+        }
+
+        .register-heading {
+          font-family: var(--font-heading);
+          font-size: 26px;
+          font-weight: 400;
+          color: #2D2D2D;
+          margin: 0 0 6px 0;
+        }
+
+        .register-subtext {
+          font-family: var(--font-body);
+          font-size: 13px;
+          color: #6B6B6B;
+          margin: 0 0 22px 0;
+        }
+
+        .register-alert-error {
+          padding: 10px 14px;
+          background-color: #FEF2F2;
+          border: 1px solid #FECACA;
+          border-radius: 4px;
+          font-family: var(--font-body);
+          font-size: 12px;
+          color: #B91C1C;
+          margin-bottom: 14px;
+          box-sizing: border-box;
+        }
+
+        .register-row-2 {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 12px;
+          margin-bottom: 12px;
+        }
+
+        .register-row-last {
+          margin-bottom: 20px;
+        }
+
+        .register-field {
+          width: 100%;
+          box-sizing: border-box;
+          min-width: 0;
+        }
+
+        .register-field-full {
+          margin-bottom: 12px;
+        }
+
+        .register-label {
+          display: block;
+          font-family: var(--font-body);
+          font-size: 10px;
+          font-weight: 600;
+          letter-spacing: 0.15em;
+          text-transform: uppercase;
+          color: #7D9B76;
+          margin-bottom: 6px;
+        }
+
+        .register-input {
+          width: 100%;
+          padding: 12px 14px;
+          font-family: var(--font-body);
+          font-size: 13px;
+          color: #2D2D2D;
+          background-color: #FDFAF5;
+          border: 1px solid #E8DDD0;
+          outline: none;
+          border-radius: 4px;
+          box-sizing: border-box;
+          transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .register-input:focus {
+          border-color: #7D9B76;
+          box-shadow: 0 0 0 3px rgba(125, 155, 118, 0.15);
+        }
+
+        .register-input-pw {
+          padding-right: 40px;
+        }
+
+        .register-pw-wrap {
+          position: relative;
+        }
+
+        .register-eye-btn {
+          position: absolute;
+          right: 10px;
+          top: 50%;
+          transform: translateY(-50%);
+          background: none;
+          border: none;
+          cursor: pointer;
+          color: #6B6B6B;
+          display: flex;
+          padding: 4px;
+          border-radius: 50%;
+          transition: color 0.2s ease, background-color 0.2s ease;
+        }
+
+        .register-eye-btn:hover {
+          color: #7D9B76;
+          background-color: rgba(125, 155, 118, 0.12);
+        }
+
+        .register-submit-btn {
+          width: 100%;
+          padding: 14px;
+          background-color: #7D9B76;
+          color: #FDFAF5;
+          font-family: var(--font-body);
+          font-size: 12px;
+          font-weight: 600;
+          letter-spacing: 0.15em;
+          text-transform: uppercase;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+          transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+        }
+
+        .register-submit-btn:hover:not(:disabled) {
+          background-color: #6a8a63;
+          box-shadow: 0 4px 12px rgba(125, 155, 118, 0.35);
+          transform: translateY(-1px);
+        }
+
+        .register-submit-btn:active:not(:disabled) {
+          transform: translateY(0);
+        }
+
+        .register-submit-btn:disabled {
+          background-color: #A8C1A2;
+          cursor: not-allowed;
+        }
+
+        .register-spinner {
+          width: 14px;
+          height: 14px;
+          border: 2px solid rgba(255,255,255,0.3);
+          border-top-color: #FDFAF5;
+          border-radius: 50%;
+          animation: spin 0.7s linear infinite;
+        }
+
+        .register-footer-text {
+          text-align: center;
+          font-family: var(--font-body);
+          font-size: 13px;
+          color: #6B6B6B;
+          margin-top: 16px;
+        }
+
+        .register-footer-link {
+          color: #7D9B76;
+          font-weight: 600;
+          text-decoration: none;
+          transition: color 0.2s ease;
+        }
+
+        .register-footer-link:hover {
+          color: #5f7d59;
+          text-decoration: underline;
+        }
+
+        @media (max-width: 560px) {
+          .register-row-2 {
+            grid-template-columns: 1fr;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .register-page {
+            padding: 24px 16px;
+          }
+          .register-card {
+            padding: 24px 20px;
+          }
+          .register-logo-title {
+            font-size: 24px;
+          }
+          .register-heading {
+            font-size: 22px;
+          }
+        }
+
+        @media (max-width: 360px) {
+          .register-card {
+            padding: 20px 16px;
+          }
+        }
+      `}</style>
     </main>
   );
 }
