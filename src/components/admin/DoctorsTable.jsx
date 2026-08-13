@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import useResponsive from '../../hooks/useResponsive'
 import Modal from '../common/Modal'
+import StatusBadge from '../common/StatusBadge'
 
 export default function DoctorsTable({ doctors = [] }) {
   const { isMobile } = useResponsive()
@@ -50,9 +51,7 @@ export default function DoctorsTable({ doctors = [] }) {
                 <td style={{ padding: '14px 16px', fontFamily: 'var(--font-body)', fontSize: '12px', color: '#6B6B6B' }}>{doc.experience}</td>
                 <td style={{ padding: '14px 16px', fontFamily: 'var(--font-body)', fontSize: '12px', color: '#7D9B76', fontWeight: '600' }}>{doc.fee}</td>
                 <td style={{ padding: '14px 16px' }}>
-                  <span style={{ padding: '3px 8px', backgroundColor: doc.available ? '#F5EFE6' : '#F5F5F5', border: `1px solid ${doc.available ? '#7D9B76' : '#E8DDD0'}`, fontFamily: 'var(--font-body)', fontSize: '9px', fontWeight: '600', letterSpacing: '0.1em', textTransform: 'uppercase', color: doc.available ? '#7D9B76' : '#6B6B6B' }}>
-                    {doc.available ? 'Active' : 'Inactive'}
-                  </span>
+                  <StatusBadge status={doc.available ? 'ACTIVE' : 'INACTIVE'} />
                 </td>
                 <td style={{ padding: '14px 16px' }}>
                   <div style={{ display: 'flex', gap: '6px' }}>

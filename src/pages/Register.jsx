@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { authService } from "../services/authService";
 import { useToastContext } from "../context/ToastContext";
 import { FiEye, FiEyeOff } from "react-icons/fi";
+import FormError from "../components/common/FormError";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -76,7 +77,7 @@ export default function Register() {
           <h1 className="register-heading">Create Account</h1>
           <p className="register-subtext">Join our Wellness Community</p>
 
-          {err && <div className="register-alert-error">{err}</div>}
+          {err && <FormError message={err} style={{ marginBottom: '14px' }} />}
 
           <form onSubmit={submit}>
             <div className="register-row-2">

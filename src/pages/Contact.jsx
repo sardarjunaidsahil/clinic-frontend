@@ -1,9 +1,11 @@
 import { useRef, useEffect, useState } from "react";
 import useResponsive from "../hooks/useResponsive";
+import useConfirm from "../hooks/useConfirm";
 import { FiPhone, FiMail, FiMapPin, FiClock } from "react-icons/fi";
 
 export default function Contact() {
   const { isMobile, isTablet } = useResponsive();
+  const { alert } = useConfirm();
   const heroRef = useRef(null);
   const [form, setForm] = useState({
     name: "",
@@ -32,7 +34,11 @@ export default function Contact() {
       )
       setSubmitted(true)
     } catch (err) {
-      alert(err?.message || 'Failed to send message. Please try again.')
+      await alert({
+        title: "Submission Error",
+        message: err?.message || "Failed to send message. Please try again.",
+        variant: "danger",
+      });
     } finally {
       setSubmitting(false)
     }
